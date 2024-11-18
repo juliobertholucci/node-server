@@ -1,6 +1,9 @@
 const express = require("express")
+const rotaHabilidade = require("./rotas/habilidades") //importa um código feito em outra pasta
 
 const app = express()
+
+app.use('/habilidades', rotaHabilidade) //define a rota (na url /habilidades) e passa o código que será utilizado nessa rota
 
 const port = 8000 //3000 para front e 8000 para back
 
