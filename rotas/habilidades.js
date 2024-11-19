@@ -1,12 +1,11 @@
 const { Router } = require("express")
-const { getHabilidades } = require("../controladores/habilidades") //controladores, para responder request, status, etc
+const { getHabilidades, getHabilidadesPorId, postHabilidadeInsere } = require("../controladores/habilidades") //controladores, para responder request, status, etc
 const router = Router()
 
 router.get("/", getHabilidades) //passa um controlador
+router.get('/:identificador', getHabilidadesPorId)
 
-router.post("/", (req, res) =>{
-    res.send("Você fez uma requisição do tipo POST")
-})
+router.post("/", postHabilidadeInsere)
 
 router.patch("/", (req, res) => {
     res.send("Você fez uma requisição do tipo PATCH")

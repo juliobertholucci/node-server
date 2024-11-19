@@ -3,6 +3,8 @@ const rotaHabilidade = require("./rotas/habilidades") //importa um código feito
 
 const app = express()
 
+app.use(express.json())
+
 app.use('/habilidades', rotaHabilidade) //define a rota (na url /habilidades) e passa o código que será utilizado nessa rota
 
 const port = 8000 //3000 para front e 8000 para back
