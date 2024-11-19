@@ -1,6 +1,10 @@
+const fs = require("fs")
+const { getTodasHabilidades } = require("../servicos/habilidades")
+
 function getHabilidades(req, res) {
     try{
-        res.send("Olá mundo!")
+        const habilidades = getTodasHabilidades()
+        res.send(habilidades)
     }catch (error){
         res.status(500)
         res.send(error.message)
