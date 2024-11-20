@@ -1,5 +1,5 @@
 const fs = require("fs")
-const { getTodasHabilidades, getHabilidadeService, insereHabilidade } = require("../servicos/habilidades")
+const { getTodasHabilidades, getHabilidadeService, insereHabilidade, modificaHabilidade } = require("../servicos/habilidades")
 
 function getHabilidades(req, res) {
     try{
@@ -22,6 +22,18 @@ function getHabilidadesPorId(req, res) {
     }
 }
 
+function patchHabilidade(req, res){
+    try {
+        const id = req.params.id //captura o id da url
+        const body = req.body //captura os dados que serão atualizados
+        modificaHabilidade(body, id) //passa os dados para o service
+        res.send("modificado")
+    } catch(error){
+        res.status(500)
+        res.send(error.message)
+    }
+}
+
 function postHabilidadeInsere (req, res) {
     try {
         const habilidadeNova = req.body
@@ -37,5 +49,6 @@ function postHabilidadeInsere (req, res) {
 module.exports = {
     getHabilidades,
     getHabilidadesPorId,
-    postHabilidadeInsere
+    postHabilidadeInsere,
+    patchHabilidade
 }
