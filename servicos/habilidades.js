@@ -9,6 +9,12 @@ function getHabilidadeService(identificador){
     return habilidadeFiltrada
 }
 
+function deletaHabilidadeService(id){
+    const habilidades = JSON.parse(fs.readFileSync("habilidades.json"))
+    const indiceDeletado = habilidades.filter(habilidade => habilidade.id !== id)
+    fs.writeFileSync("habilidades.json", JSON.stringify(indiceDeletado))
+}
+
 function modificaHabilidade(modificacoes, id){ //dados passados dos controladores
     let habilidadesAtuais = JSON.parse(fs.readFileSync("habilidades.json")) //lê todas as habilidades
     const indiceModificado = habilidadesAtuais.findIndex(habilidade => habilidade.id === id) //busca o primeiro resultado em que o id dentro do objeto é igual ao id passado em parâmetro e salva o indice desse objeto
@@ -28,5 +34,6 @@ module.exports = {
     getTodasHabilidades,
     getHabilidadeService,
     insereHabilidade,
-    modificaHabilidade
+    modificaHabilidade,
+    deletaHabilidadeService
 }

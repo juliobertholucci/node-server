@@ -1,5 +1,5 @@
 const fs = require("fs")
-const { getTodasHabilidades, getHabilidadeService, insereHabilidade, modificaHabilidade } = require("../servicos/habilidades")
+const { getTodasHabilidades, getHabilidadeService, insereHabilidade, modificaHabilidade, deletaHabilidadeService } = require("../servicos/habilidades")
 
 function getHabilidades(req, res) {
     try{
@@ -17,6 +17,17 @@ function getHabilidadesPorId(req, res) {
         const habilidade = getHabilidadeService(id)
         res.send(habilidade)
     }catch (error){
+        res.status(500)
+        res.send(error.message)
+    }
+}
+
+function deletaHabilidade(req, res){
+    try{
+        const id = req.params.id
+        deletaHabilidadeService(id)
+        res.send(`deletado usuário de id ${id}`)
+    }catch(error){
         res.status(500)
         res.send(error.message)
     }
@@ -50,5 +61,6 @@ module.exports = {
     getHabilidades,
     getHabilidadesPorId,
     postHabilidadeInsere,
-    patchHabilidade
+    patchHabilidade,
+    deletaHabilidade
 }
