@@ -1,18 +1,18 @@
 const fs = require("fs")
 function getTodasHabilidades() {
-    return JSON.parse(fs.readFileSync("habilidades.json"))
+    return JSON.parse(fs.readFileSync("habilidades.json")) //lê todas as habilidades do arquivo
 }
 
 function getHabilidadeService(identificador){
     const habilidades = JSON.parse(fs.readFileSync("habilidades.json"))
-    const habilidadeFiltrada = habilidades.filter( habilidade => habilidade.id === identificador) [0]
+    const habilidadeFiltrada = habilidades.filter( habilidade => habilidade.id === identificador) [0] //filtra a habilidade pelo id informado e retorna apenas o objeto ([0])
     return habilidadeFiltrada
 }
 
 function deletaHabilidadeService(id){
-    const habilidades = JSON.parse(fs.readFileSync("habilidades.json"))
-    const indiceDeletado = habilidades.filter(habilidade => habilidade.id !== id)
-    fs.writeFileSync("habilidades.json", JSON.stringify(indiceDeletado))
+    const habilidades = JSON.parse(fs.readFileSync("habilidades.json")) //lê as habilidades
+    const indiceDeletado = habilidades.filter(habilidade => habilidade.id !== id) //cria um novo array sem a habilidade informada no id
+    fs.writeFileSync("habilidades.json", JSON.stringify(indiceDeletado)) //escreve o novo array no arquivo
 }
 
 function modificaHabilidade(modificacoes, id){ //dados passados dos controladores
